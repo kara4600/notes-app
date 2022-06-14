@@ -40,11 +40,18 @@ const NotePage = () => {
 
     let handleSubmit = () => {
         // Deletes note if all content is deleted
-        if (note.id !== "new" && note === "") {
+        if (noteId !== "new" && note === "") {
             handleDelete();
-        } else if (note.id === "new" && note !== null) {
+        } 
+        // Handles the creation of a new note
+        else if (noteId === "new" && note !== null) {
+            console.log("NEW NOTE REQUESTED");
             newNote();
         } 
+        else if (noteId === "new" && note === null) {
+            console.log("NEW NOTE BUT EMPTY");
+            return;
+        }
         else {
             updateNote();
             console.log("UPDATING NOTE NOT EMPTY")
@@ -62,12 +69,29 @@ const NotePage = () => {
     }
 
     let newNote = async () => {
+        console.log("IN NEW NOTE FUNCTION");
+        console.log();
+
+        const data = {
+            'body': note,
+            'updated': new Date(),
+        };
+
         const requestOptions = {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({'body': note, 'updated': new Date()}) 
-        }
-        await fetch(`http://localhost:8000/notes/`, {})
+            method: 'POST',
+            headers: {'Content-Type': 'application/json' },
+            body: JSON.stringify(data) 
+        };
+        console.log("REQUEST OPTIONS", requestOptions);
+
+        await fetch(`http://localhost:8000/notes/`, requestOptions)
+        .then(response => response.json())
+        .then(tst => {
+            console.log("SUCCESS", tst);
+        })
+        .catch((error) => {
+            console.error("ERROR: ", error);
+        });
     }
     
     return(
