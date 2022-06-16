@@ -10,7 +10,7 @@ const NotePage = () => {
 
     useEffect(() => {
         getNote();
-    }, [noteId])
+    }, [])
 
     let getNote = async() => {
         if (noteId !== "new") {
@@ -46,7 +46,7 @@ const NotePage = () => {
         // Handles the creation of a new note
         else if (noteId === "new" && note !== "") {
             console.log("NEW NOTE REQUESTED");
-            newNote();
+            handleNewNote();
         } 
         else if (noteId === "new" && note === "") {
             console.log("NEW NOTE BUT EMPTY");
@@ -67,11 +67,9 @@ const NotePage = () => {
         deleteNote();
         navigate("/");
     }
-
+    
     let newNote = async () => {
-        console.log("IN NEW NOTE FUNCTION");
-        console.log();
-
+        //console.log("IN NEW NOTE FUNCTION");
         const data = {
             'body': note,
             'updated': new Date(),
@@ -82,18 +80,23 @@ const NotePage = () => {
             headers: {'Content-Type': 'application/json' },
             body: JSON.stringify(data) 
         };
-        console.log("REQUEST OPTIONS", requestOptions);
-
+        //console.log("REQUEST OPTIONS", requestOptions);
         await fetch(`http://localhost:8000/notes/`, requestOptions)
-        .then(response => response.json())
-        .then(tst => {
-            console.log("SUCCESS", tst);
-        })
-        .catch((error) => {
-            console.error("ERROR: ", error);
-        });
+
+        // .then(response => response.json())
+        // .then(tst => {
+        //     console.log("SUCCESS", tst);
+        // })
+        // .catch((error) => {
+        //     console.error("ERROR: ", error);
+        // });
     }
-    
+
+    let handleNewNote = () => {
+        newNote();
+        navigate("/");
+    }
+
     return(
         <div className="note">
             <div className="note-header">

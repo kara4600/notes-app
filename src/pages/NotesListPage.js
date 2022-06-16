@@ -8,7 +8,7 @@ const NotesListPage = () => {
 
     useEffect(() => {
         getNotes();
-    }, [notes])
+    }, [notes.length])
 
     let getNotes = async() => {
         try {
@@ -33,6 +33,7 @@ const NotesListPage = () => {
                     <ListItem key={index} note={entry} />
                 ))}
             </div>
+
             <AddButton />
         </div>
     );
