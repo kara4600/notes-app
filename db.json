@@ -1,24 +1,3 @@
 {
-  "notes": [
-    {
-      "body": "Test note #1",
-      "updated": "2022-06-14T19:25:46.050Z",
-      "id": 1
-    },
-    {
-      "body": "Test note #2",
-      "updated": "2022-06-14T19:26:12.167Z",
-      "id": 2
-    },
-    {
-      "body": "Test note #3",
-      "updated": "2022-06-14T19:26:01.046Z",
-      "id": 3
-    },
-    {
-      "body": "Test note #4",
-      "updated": "2022-06-14T19:26:06.834Z",
-      "id": 5
-    }
-  ]
+  "notes": []
 }
