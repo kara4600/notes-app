@@ -8,7 +8,7 @@ const NotesListPage = () => {
 
     useEffect(() => {
         getNotes();
-    }, [])
+    }, [notes])
 
     let getNotes = async() => {
         try {
