@@ -6,7 +6,7 @@ const NotePage = () => {
     let noteId = params.id;
     let navigate = useNavigate();
     //let note = notes.find(note => note.id === Number(noteId));
-    let [note, setNote] = useState(null);
+    let [note, setNote] = useState("");
 
     useEffect(() => {
         getNote();
@@ -44,11 +44,11 @@ const NotePage = () => {
             handleDelete();
         } 
         // Handles the creation of a new note
-        else if (noteId === "new" && note !== null) {
+        else if (noteId === "new" && note !== "") {
             console.log("NEW NOTE REQUESTED");
             newNote();
         } 
-        else if (noteId === "new" && note === null) {
+        else if (noteId === "new" && note === "") {
             console.log("NEW NOTE BUT EMPTY");
             return;
         }
